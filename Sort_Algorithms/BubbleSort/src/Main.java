@@ -9,7 +9,7 @@ public class Main {
         // moves one element with every full iteration through the array. The bubble sort is
         // done once the partition reaches the far left side (lowest index).
         // The big O notation for this algorithm is O(n^2) due to the nested loop.
-        // This displays quadratic time complexity.  
+        // This displays quadratic time complexity.
         int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
         for (int lastUnsortedIndex = intArray.length - 1; lastUnsortedIndex > 0; lastUnsortedIndex--) {
