@@ -4,7 +4,7 @@ public class Main {
 	    // This is an implementation of shell sort. This is a variation on insertion sort.
         // This goal of this variation is to reduce the amount of shifting than is required
         // by insertion sort. Shell sort begins by comparing elements that are further apart,
-        // sorting those, and then using insertion sort to finish. 
+        // sorting those, and then using insertion sort to finish.
         int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
 	    for (int gap = intArray.length / 2; gap > 0; gap /= 2) {
