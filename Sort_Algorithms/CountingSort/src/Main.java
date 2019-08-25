@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
         // This is an implementation of counting sort. It assumes that
         // the values are within a certain range. It uses a temporary array
-        // to count the occurrences of each possible value. 
+        // to count the occurrences of each possible value.
 	    int[] intArray = {2, 5, 9, 8, 7, 10, 4, 3 };
 
 	    countingSort(intArray, 1, 10);
