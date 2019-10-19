@@ -10,7 +10,7 @@ public class SimpleHashtable {
     public void put(String key, Employee employee) {
         // getting the hashed key for the entered key
         int hashedKey = hashKey(key);
-        // using linear probing when adding elements
+        // using linear probing when adding elements to avoid collision
         if (occupied(hashedKey)) {
             int stopIndex = hashedKey;
             if (hashedKey == hashtable.length - 1) {
@@ -32,6 +32,7 @@ public class SimpleHashtable {
         }
     }
 
+    // Retrieve employee using key (happens in constant time)
     public Employee get(String key) {
         int hashedKey = findKey(key);
         if (hashedKey == -1) {
@@ -40,6 +41,7 @@ public class SimpleHashtable {
         return hashtable[hashedKey].employee;
     }
 
+    // Remove employee from your hashtable
     public Employee remove(String key) {
         int hashedKey = findKey(key);
         if (hashedKey == -1) {
@@ -48,7 +50,9 @@ public class SimpleHashtable {
         Employee employee = hashtable[hashedKey].employee;
         hashtable[hashedKey] = null;
 
-        // Rehashing
+        // Rehashing on remove so the old position is not null- we need to do this because in linear probing we drop
+        // out of the loop when we find a null value. Keeping us from finding a key that would have been at the index
+        // where the removed employee was.
         StoredEmployee[] oldHashtable = hashtable;
         hashtable = new StoredEmployee[oldHashtable.length];
         for (int i = 0; i < oldHashtable.length; i++) {
@@ -66,9 +70,11 @@ public class SimpleHashtable {
 
     private int findKey(String key) {
         int hashedKey = hashKey(key);
+        // Finding if key we are searching is the one that was stored at that hash value
         if (hashtable[hashedKey] != null && hashtable[hashedKey].key.equals(key)) {
             return hashedKey;
         }
+        // If the value at the hashed index is not the one we are looking for, we must use linear probing
         int stopIndex = hashedKey;
         if (hashedKey == hashtable.length - 1) {
             hashedKey = 0;
@@ -83,10 +89,9 @@ public class SimpleHashtable {
         } else {
             return -1;
         }
-
-
     }
 
+    // Part of linear probing- checking if index in hashtable was already taken
     private boolean occupied(int index) {
         return hashtable[index] != null;
     }
