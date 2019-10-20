@@ -21,5 +21,8 @@ public class Main {
 
 		System.out.println(heap.peek());
 
+		heap.sort();
+		heap.printHeap();
+
     }
 }
